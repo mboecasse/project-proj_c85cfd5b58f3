@@ -507,3 +507,5 @@ orderSchema.methods.processRefund = async function(amount, reason = null) {
     const currentRefund = this.payment.refundAmount || 0;
     this.payment.refundAmount = currentRefund + amount;
     this.payment
+
+}}

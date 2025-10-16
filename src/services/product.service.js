@@ -546,3 +546,5 @@ class ProductService {
         $or: [
           { name: searchRegex },
           { description:
+
+}}}}}]

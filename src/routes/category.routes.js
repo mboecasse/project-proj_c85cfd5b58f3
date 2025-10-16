@@ -557,3 +557,5 @@ router.put('/:id', authenticate, requireRole(['admin']), validateCategoryId, val
     // Update category fields
     if (name !== undefined) category.name = name.trim();
     if (description !== undefine
+
+}}))

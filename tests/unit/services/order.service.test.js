@@ -494,3 +494,5 @@ describe('OrderService', () => {
   });
 
   describe('calculateShipping',
+
+}))

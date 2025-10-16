@@ -394,7 +394,7 @@ const requireRoleLevel = (minimumRole) => {
 
 
 function getNestedValue(obj, path) {
-  return path.split('.').reduce((current, key) => current?.[key], obj);
+  return path.split('.').reduce((current, key) => current.[key], obj);
 }
 
 /**

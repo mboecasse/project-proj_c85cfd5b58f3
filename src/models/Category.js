@@ -175,7 +175,7 @@ CategorySchema.pre('findOneAndUpdate', async function(next) {
   try {
     const update = this.getUpdate();
 
-    if (update.parent !== undefined || update.$set?.parent !== undefined) {
+    if (update.parent !== undefined || update.$set.parent !== undefined) {
       const parentId = update.parent || update.$set?.parent;
       const docId = this.getQuery()._id;
 

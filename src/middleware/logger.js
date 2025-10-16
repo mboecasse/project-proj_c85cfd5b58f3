@@ -101,7 +101,7 @@ const requestLogger = (req, res, next) => {
     headers: sanitizeHeaders(req.headers),
     ip: req.ip || req.connection.remoteAddress,
     userAgent: req.get('user-agent'),
-    userId: req.user?.id,
+    userId: req.user.id,
     userEmail: req.user?.email,
     body: sanitizeBody(req.body, req.path)
   });

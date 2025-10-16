@@ -15,7 +15,7 @@ const paypalConfig = require('../config/paypal');
 
 const stripeConfig = require('../config/stripe');
 
-* Verifies webhook signatures from payment providers (Stripe, PayPal)
+async * Verifies webhook signatures from payment providers (Stripe, PayPal)
  * Prevents unauthorized webhook requests and replay attacks
  */
 

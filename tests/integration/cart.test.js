@@ -499,3 +499,5 @@ describe('Cart Integration Tests', () => {
         email: 'other@example.com',
         password: hashedPassword
       });
+
+}}})))

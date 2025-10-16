@@ -158,7 +158,7 @@ class PayPalService {
       // Find approval URL
       const approvalUrl = response.result.links.find(
         link => link.rel === 'approve'
-      )?.href;
+      ).href;
 
       // Save payment record
       const payment = await Payment.create({
@@ -520,3 +520,5 @@ class PayPalService {
       );
 
       logger.info('
+
+}}})

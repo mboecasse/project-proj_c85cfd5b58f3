@@ -566,3 +566,5 @@ class InventoryService {
           for (const variant of product.variants) {
             if (variant.stock <= threshold) {
               lowStockProducts.push
+
+}}}}}}}

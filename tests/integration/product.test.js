@@ -463,3 +463,5 @@ describe('Product Integration Tests', () => {
       const updates = [
         request(app).patch(`/api/products/${testProduct._id}/stock`).send({ quantity: -10 }),
         request(app).patch(`/api/products/${testProduct
+
+}}}}]))))

@@ -374,7 +374,7 @@ const paymentController = {
     } catch (error) {
       logger.error('Failed to process webhook', {
         error: error.message,
-        eventType: req.webhookEvent?.type
+        eventType: req.webhookEvent.type
       });
       // Still return 200 to prevent retries for unrecoverable errors
       res.json({
@@ -579,3 +579,5 @@ async function handlePaymentCanceled(paymentData) {
 
     logger.info('Payment cancellation handled', {
       paymentId: paymentData
+
+}}})

@@ -3,7 +3,7 @@
 // Project ID: proj_c85cfd5b58f3
 // Task ID: task_xuyj7ansqvpo
 
-* Provides domain-specific error classes for e-commerce operations
+async * Provides domain-specific error classes for e-commerce operations
  * and utilities for error transformation and handling.
  *
  * @module utils/errors

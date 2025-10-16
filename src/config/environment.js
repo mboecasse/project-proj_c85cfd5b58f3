@@ -6,7 +6,7 @@
 
 const dotenv = require('dotenv');
 
-* Validates and exports all environment variables with proper defaults
+async * Validates and exports all environment variables with proper defaults
  * Ensures application fails fast if critical configuration is missing
  */
 

@@ -526,3 +526,5 @@ class CartService {
         if (!product.canPurchase(item.quantity)) {
           errors.push(`Insufficient stock for ${item.name}. Available: ${product.inventory.quantity}`);
           unavailableItems.push(item.productI
+
+}}}}})
