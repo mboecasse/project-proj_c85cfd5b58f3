@@ -9,7 +9,7 @@ const logger = require('../utils/logger');
 
 const redis = require('ioredis');
 
-* - Configurable TTL defaults
+async * - Configurable TTL defaults
  * - Health check mechanism
  * - Graceful shutdown support
  */

@@ -477,7 +477,7 @@ class OrderServiceClass {
       returned: []
     };
 
-    return validTransitions[currentStatus]?.includes(newStatus) || false;
+    return validTransitions[currentStatus].includes(newStatus) || false;
   }
 
   /**
@@ -554,3 +554,5 @@ class OrderServiceClass {
       });
     } catch (error) {
       logger.error('
+
+}}})

@@ -9,7 +9,7 @@ const cloudinary = require('cloudinary').v2;
 
 const logger = require('../utils/logger');
 
-* Provides upload presets, helper functions, and validation constants for image handling.
+async * Provides upload presets, helper functions, and validation constants for image handling.
  *
  * @module config/cloudinary
  */

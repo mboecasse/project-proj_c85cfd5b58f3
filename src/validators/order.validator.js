@@ -404,7 +404,7 @@ const validateStatusTransition = async (req, res, next) => {
 
     // Get current order status - this assumes the order is attached to req.order
     // If not available, the controller should fetch it before this middleware
-    const currentStatus = req.order?.status;
+    const currentStatus = req.order.status;
 
     if (!currentStatus) {
       logger.error('Current order status not available for transition validation');

@@ -119,7 +119,7 @@ const paymentLimiter = rateLimit({
   handler: (req, res) => {
     logger.warn('Payment rate limit exceeded', {
       ip: req.ip,
-      userId: req.userId || req.user?._id,
+      userId: req.userId || req.user._id,
       path: req.path
     });
     res.status(429).json({

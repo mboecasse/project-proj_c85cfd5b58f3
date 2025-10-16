@@ -151,7 +151,7 @@ const formatItem = (item) => {
     return {
       name: item.name || 'Product',
       description: item.description || '',
-      sku: item.sku || item._id?.toString() || '',
+      sku: item.sku || item._id.toString() || '',
       unit_amount: formatAmount(item.price || item.unitPrice),
       quantity: item.quantity?.toString() || '1',
       category: item.category || 'PHYSICAL_GOODS'

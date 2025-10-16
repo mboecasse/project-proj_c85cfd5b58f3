@@ -490,3 +490,5 @@ describe('CartService', () => {
       expect(mockCart.totalAmount).toBe(180);
       expect(mockCart.save).toHaveBeenCalled();
       expect(redisService.del).toHaveBeenCalledWith(`cart:${mockUs
+
+}}}}))))

@@ -6,7 +6,7 @@
 
 const logger = require('../utils/logger');
 
-* This file aggregates all models for easy importing throughout the application.
+async * This file aggregates all models for easy importing throughout the application.
  *
  * Usage:
  *   const { User, Product, Order } = require('./models');

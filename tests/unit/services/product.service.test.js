@@ -409,3 +409,5 @@ describe('ProductService', () => {
 
       await expect(productService.updateStock('product123', -10)).rejects.toThrow('Insufficient stock');
       expect(logger.error).toHaveBeenCalled();
+
+}}})))

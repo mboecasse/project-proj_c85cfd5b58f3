@@ -9,7 +9,7 @@ const bcrypt = require('bcryptjs');
 
 const logger = require('./logger');
 
-* Provides secure password hashing and comparison functionality
+async * Provides secure password hashing and comparison functionality
  * Uses bcryptjs for cryptographic operations
  *
  * @module utils/password

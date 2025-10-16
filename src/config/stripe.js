@@ -9,7 +9,7 @@ const Stripe = require('stripe');
 
 const logger = require('../utils/logger');
 
-* - STRIPE_CURRENCY: Default currency (optional, defaults to 'usd')
+async * - STRIPE_CURRENCY: Default currency (optional, defaults to 'usd')
  * - STRIPE_API_VERSION: API version to use (optional, defaults to '2023-10-16')
  */
 

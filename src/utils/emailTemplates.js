@@ -6,7 +6,7 @@
 
 const logger = require('./logger');
 
-* Provides reusable HTML email templates for various e-commerce transactional emails
+async * Provides reusable HTML email templates for various e-commerce transactional emails
  */
 
 /**
@@ -784,3 +784,5 @@ const generateRefundProcessedEmail = (refundData) => {
 
       <div style="text-align: center; margin-top: 30px;">
         <a href="${process
+
+}}}

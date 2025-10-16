@@ -514,3 +514,5 @@ PaymentSchema.methods.getPaymentSummary = function () {
     id: this._id,
     orderId: this.orderId,
     amount
+
+}}

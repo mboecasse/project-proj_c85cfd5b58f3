@@ -377,7 +377,7 @@ async function handlePaymentFailure(paymentIntent) {
     // Update order payment status
     await orderService.updateOrderPaymentStatus(orderId, 'failed', {
       paymentIntentId: paymentIntent.id,
-      failureReason: paymentIntent.last_payment_error?.message
+      failureReason: paymentIntent.last_payment_error.message
     });
 
     logger.info('Payment failure handled', { orderId });

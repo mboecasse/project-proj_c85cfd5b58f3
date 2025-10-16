@@ -564,3 +564,5 @@ module.exports = {
   validateCreateProduct,
   validateUpdateProduct,
   validateProductId,
+
+}

@@ -525,3 +525,5 @@ const validateURL = (url) => {
 const validateRating = (rating) => {
   const ratingNum = parseFloat(rating);
   return !isNaN(ratingNum) && ratingNum >= 1 && ratingNum <=
+
+}

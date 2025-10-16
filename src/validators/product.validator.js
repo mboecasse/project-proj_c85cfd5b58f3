@@ -524,3 +524,4 @@ const bulkUpdateValidation = [
   body('productIds')
     .isArray({ min: 1, max: 100 })
     .withMessage('Product IDs must be
+])

@@ -481,3 +481,5 @@ const orderFixtures = {
 
 const paymentFixtures = {
   successfulPay
+
+}
