@@ -1,0 +1,179 @@
+version: '3.8'
+
+services:
+  # Node.js API Service
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: ecommerce-api
+    restart: unless-stopped
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      # Application Configuration
+      - NODE_ENV=development
+      - PORT=3000
+      - API_VERSION=v1
+
+      # Database Configuration
+      - MONGODB_URI=mongodb://mongodb:27017/ecommerce
+      - MONGODB_MAX_POOL_SIZE=10
+
+      # Redis Configuration
+      - REDIS_URL=redis://redis:6379
+      - REDIS_TTL=3600
+
+      # JWT Configuration
+      - JWT_ACCESS_SECRET=dev-jwt-access-secret-change-in-production-min-32-chars
+      - JWT_ACCESS_EXPIRY=15m
+      - JWT_REFRESH_SECRET=dev-jwt-refresh-secret-change-in-production-min-32-chars
+      - JWT_REFRESH_EXPIRY=7d
+
+      # Session Configuration
+      - SESSION_SECRET=dev-session-secret-change-in-production-min-32-chars
+
+      # Payment Integration (Stripe)
+      - STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key_here
+      - STRIPE_WEBHOOK_SECRET=whsec_your_stripe_webhook_secret_here
+      - STRIPE_PUBLISHABLE_KEY=pk_test_your_stripe_publishable_key_here
+
+      # CORS Configuration
+      - CORS_ORIGIN=http://localhost:3001
+
+      # Rate Limiting
+      - RATE_LIMIT_WINDOW_MS=900000
+      - RATE_LIMIT_MAX_REQUESTS=100
+
+      # Feature Flags
+      - ENABLE_CART_PERSISTENCE=true
+      - ENABLE_PAYMENT_PROCESSING=true
+      - ENABLE_EMAIL_NOTIFICATIONS=false
+
+      # Logging
+      - LOG_LEVEL=debug
+      - LOG_FORMAT=json
+    volumes:
+      # Source code for hot reload
+      - ./src:/app/src:cached
+      - ./package.json:/app/package.json
+      - ./package-lock.json:/app/package-lock.json
+
+      # Prevent node_modules override
+      - /app/node_modules
+
+      # Configuration files
+      - ./config:/app/config:ro
+
+      # Logs directory
+      - ./logs:/app/logs
+    depends_on:
+      mongodb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - ecommerce-network
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/health', (r) => process.exit(r.statusCode === 200 ? 0 : 1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    stdin_open: true
+    tty: true
+    command: npm run dev
+
+  # MongoDB Database
+  mongodb:
+    image: mongo:6.0
+    container_name: ecommerce-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=ecommerce
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin123
+    volumes:
+      - mongodb-data:/data/db
+      - mongodb-config:/data/configdb
+      - ./scripts/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      - ecommerce-network
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/ecommerce --quiet
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    command: mongod --auth
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: ecommerce-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+      - ./config/redis.conf:/usr/local/etc/redis/redis.conf:ro
+    networks:
+      - ecommerce-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
+    command: redis-server --appendonly yes --requirepass redis123
+
+  # MongoDB Express (Database Admin UI)
+  mongo-express:
+    image: mongo-express:latest
+    container_name: ecommerce-mongo-express
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=admin123
+      - ME_CONFIG_MONGODB_URL=mongodb://admin:admin123@mongodb:27017/
+      - ME_CONFIG_BASICAUTH_USERNAME=admin
+      - ME_CONFIG_BASICAUTH_PASSWORD=admin123
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - ecommerce-network
+
+  # Redis Commander (Redis Admin UI)
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: ecommerce-redis-commander
+    restart: unless-stopped
+    ports:
+      - "8082:8081"
+    environment:
+      - REDIS_HOSTS=local:redis:6379:0:redis123
+      - HTTP_USER=admin
+      - HTTP_PASSWORD=admin123
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - ecommerce-network
+
+networks:
+  ecommerce-network:
+    driver: bridge
+    name: ecommerce-network
+
+volumes:
+  mongodb-data:
+    name: ecommerce-mongodb-data
+  mongodb-config:
+    name: ecommerce-mongodb-config
+  redis-data:
+    name: ecommerce-redis-data

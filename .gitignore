@@ -1,0 +1,217 @@
+public/uploads/
+static/images/products/
+temp-uploads/
+user-content/
+
+# Order receipts and invoices
+invoices/
+receipts/
+order-documents/
+
+# Customer data exports (CRITICAL - contains PII)
+customer-exports/
+user-data/
+
+# ===================================
+# LOGS & DEBUGGING
+# ===================================
+
+# Application logs
+logs/
+*.log
+npm-debug.log*
+error.log
+access.log
+combined.log
+debug.log
+application.log
+
+# Debug files
+.vscode/launch.json
+.idea/workspace.xml
+debug/
+
+# ===================================
+# TESTING & COVERAGE
+# ===================================
+
+# Test coverage reports
+coverage/
+.nyc_output/
+*.lcov
+htmlcov/
+
+# Test results
+test-results/
+junit.xml
+test-reports/
+
+# Temporary test files
+*.test.local.js
+test-data/
+
+# ===================================
+# IDE & EDITOR FILES
+# ===================================
+
+# VSCode
+.vscode/
+*.code-workspace
+.history/
+
+# JetBrains IDEs (WebStorm, IntelliJ)
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+# ===================================
+# OS-SPECIFIC FILES
+# ===================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+.fuse_hidden*
+
+# ===================================
+# SECURITY & SENSITIVE DATA
+# ===================================
+
+# Authentication tokens
+tokens/
+*.token
+.session
+sessions/
+
+# API keys and secrets (CRITICAL)
+api-keys.json
+secrets.txt
+credentials.json
+
+# JWT signing keys
+jwt-keys/
+*.jwt
+
+# Session storage
+session-data/
+
+# ===================================
+# TEMPORARY & CACHE FILES
+# ===================================
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Cache directories
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
+
+# ===================================
+# DOCKER & DEPLOYMENT
+# ===================================
+
+# Docker
+docker-compose.override.yml
+.dockerignore.local
+
+# Kubernetes
+*.kubeconfig
+
+# Terraform
+*.tfstate
+*.tfstate.backup
+.terraform/
+
+# ===================================
+# MISCELLANEOUS
+# ===================================
+
+# Dependency directories
+jspm_packages/
+bower_components/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional stylelint cache
+.stylelintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variable files
+.env.backup
+
+# Serverless directories
+.serverless/
+
+# FuseBox cache
+.fusebox/
+
+# DynamoDB Local files
+.dynamodb/
+
+# TernJS port file
+.tern-port
+
+# Stores VSCode versions used for testing VSCode extensions
+.vscode-test
+
+# yarn v2
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
